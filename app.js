@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const ejs = require('ejs');
 const bodyParser = require('body-parser');
@@ -5,8 +6,8 @@ const bodyParser = require('body-parser');
 const http = require('http');
 const MessagingResponse =require('twilio').twiml.MessagingResponse;
 
-const accountSid = 'AC2371c2fffdbeddb5c970f4fc087dd212';
-const authToken = '21eb7cbb19753b69807f75ca78760c8e';
+const accountSid = process.env.TWILIO_ACCOUNT_SID;
+const authToken = process.env.TWILIO_AUTH_TOKEN;
 
 const client = require('twilio')(accountSid, authToken);
 
