@@ -2,7 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const ejs = require('ejs');
 const bodyParser = require('body-parser');
-// const socketio = require('socket.io');
+
 const http = require('http');
 const MessagingResponse =require('twilio').twiml.MessagingResponse;
 
@@ -43,27 +43,20 @@ app.post('/', (req, res) => {
 });
 
 app.post('/sms', (req, res) => {
-    const twiml = new MessagingResponse();
+    
+        const twiml = new MessagingResponse();
+      
+        twiml.message('The Robots are coming! Head for the hills!');
+      
+        res.writeHead(200, {'Content-Type': 'text/xml'});
+        res.end(twiml.toString());
+      });
 
-    twiml.message('We got it.');
-
-    res.writeHead(200, {'ContentType': 'text/xml'});
-    res.end(twiml.toString());
-});
 
 
-//port definition
-// const port = 1337;
 
-// const server = app.listen(port, () => console.log(`🌎 Server started on port ${port}`));
 
 http.createServer(app).listen(1337, () => {
     console.log(`Server listening` );
 })
-// const io = socketio(server);
-// io.on('connection', (socket) => {
-//     console.log('Connected');
-//     io.on('disconnect', () => {
-//         console.log('Disconnected');
-//     })
-// })
+
